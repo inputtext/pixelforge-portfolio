@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Pixelify_Sans, Geist_Mono } from "next/font/google";
+import { Silkscreen, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const pixel = Pixelify_Sans({
+const pixel = Silkscreen({
   variable: "--font-pixel",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "700"],
 });
 
 const mono = Geist_Mono({
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${pixel.variable} ${mono.variable} h-full antialiased`}>
+    <html lang="en" className={"--font-pixel --font-pixel-mono h-full antialiased"}>
       <body className="min-h-full">{children}</body>
     </html>
   );
