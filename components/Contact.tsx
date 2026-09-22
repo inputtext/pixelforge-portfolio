@@ -1,5 +1,3 @@
-import { GithubIcon, Linkedin } from "lucide-react";
-
 export default function Contact(){
  return <section id="contact" className="px-5 pb-8 pt-12 md:px-10 md:pt-20">
   <div className="mx-auto max-w-[1480px]">
