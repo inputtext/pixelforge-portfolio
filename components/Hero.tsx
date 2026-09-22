@@ -13,25 +13,11 @@ export default function Hero() {
           <div className="pixel-field relative min-h-[690px] overflow-hidden rounded-[12px] border border-white/80 md:min-h-[760px]">
             <div className="absolute inset-0 bg-white/10" />
 
-            <div className="absolute inset-x-0 top-0 flex h-14 items-center justify-between border-b border-black/10 bg-white/70 px-5 backdrop-blur-sm md:px-8">
-              <div className="flex items-center gap-2 text-xs font-semibold tracking-[-0.02em]">
-                <span className="h-3 w-3 rounded-full bg-foreground" />
-                <span>PIXELFORGE STUDIO</span>
-              </div>
-
-              <div className="hidden items-center gap-7 text-[10px] uppercase tracking-[0.14em] text-text-secondary md:flex">
-                <span>work</span>
-                <span>process</span>
-                <span>experiments</span>
-                <span>about</span>
-              </div>
-
-              <a
-                href="#contact"
-                className="bg-accent-green px-4 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground transition-transform hover:-translate-y-0.5"
-              >
-                Contact
-              </a>
+            <div className="absolute left-5 top-5 flex items-center gap-2 md:left-8 md:top-6">
+              <span className="h-2.5 w-2.5 bg-foreground" />
+              <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-text-secondary">
+                PixelForge / Digital Workshop
+              </span>
             </div>
 
             <div className="absolute left-[7%] top-[24%] text-[9px] uppercase tracking-[0.22em] text-text-secondary">
