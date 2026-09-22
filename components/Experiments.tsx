@@ -32,22 +32,19 @@ export default function Experiments() {
           </p>
         </div>
 
-        <div className="grid border-t border-border md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3">
           {experiments.map((experiment, index) => (
             <article
               key={experiment.code}
-              className="group relative min-h-[260px] border-b border-border p-6 md:min-h-[320px] md:border-b-0 md:border-r md:p-8 md:last:border-r-0"
+              className="group relative min-h-[300px] overflow-hidden border border-border bg-surface p-6 md:min-h-[340px] md:p-8"
             >
               <div className="flex items-start justify-between">
                 <span className="font-mono text-[10px] tracking-[0.18em] text-text-muted">
                   {experiment.code}
                 </span>
 
-                <span className="grid h-8 w-8 grid-cols-2 grid-rows-2 gap-px border border-border p-1 transition-transform duration-500 group-hover:rotate-90">
-                  <span className="bg-accent" />
-                  <span className="bg-border" />
-                  <span className="bg-border" />
-                  <span className="bg-accent-green" />
+                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border transition-transform duration-500 group-hover:rotate-90">
+                  <span className="h-3 w-3 rounded-full bg-accent" />
                 </span>
               </div>
 
