@@ -11,8 +11,8 @@ export default function Contact(){
       <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
        <p className="max-w-md text-xs leading-5 text-muted">A weird problem, a product idea, or something that needs shipping? Find me online.</p>
        <div className="flex gap-3">
-        <a href="https://github.com/inputtext" className="pixel-button inline-flex items-center gap-2 bg-green px-5 py-3 text-xs font-bold uppercase">GitHub <GithubIcon size={14}/></a>
-        <a href="https://www.linkedin.com/in/piyush-kanojiya-b78340358/" className="pixel-button inline-flex items-center gap-2 bg-paper px-5 py-3 text-xs font-bold uppercase">LinkedIn <Linkedin size={14}/></a>
+        <a href="https://github.com/inputtext" className="pixel-button inline-flex items-center gap-2 bg-green px-5 py-3 text-xs font-bold uppercase">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/piyush-kanojiya-b78340358/" className="pixel-button inline-flex items-center gap-2 bg-paper px-5 py-3 text-xs font-bold uppercase">LinkedIn ↗</a>
        </div>
       </div>
      </div>
