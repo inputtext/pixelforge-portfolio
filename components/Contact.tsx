@@ -20,7 +20,7 @@ export default function Contact() {
             </div>
 
             <a
-              href="mailto:piyushkanojiya@example.com"
+              href="https://github.com/inputtext"
               className="group inline-flex items-center gap-3 border border-border-strong px-5 py-4 text-sm text-text-primary transition-colors hover:bg-surface-hover"
             >
               Get in touch
