@@ -1,90 +1,88 @@
-import { ArrowDownRight, CalendarDays, Video } from "lucide-react";
+"use client";
+
+import { ArrowDownRight } from "lucide-react";
+
+const cells = [
+  ["bg-lavender","col-span-2"],["bg-purple",""],["bg-pink",""],["bg-green","row-span-2"],
+  ["bg-yellow",""],["bg-lavender",""],["bg-blue","col-span-2"],["bg-pink",""],
+  ["bg-green",""],["bg-yellow","row-span-2"],["bg-purple",""],["bg-lavender",""],
+  ["bg-pink","col-span-2"],["bg-blue",""],["bg-green",""],["bg-yellow",""],
+  ["bg-lavender",""],["bg-purple","row-span-2"],["bg-pink",""],["bg-blue","col-span-2"],
+  ["bg-green",""],["bg-yellow",""],["bg-lavender",""],["bg-purple",""],
+  ["bg-blue","col-span-2"],["bg-pink",""],["bg-yellow",""],["bg-green",""],
+];
 
 export default function Hero() {
   return (
-    <section id="top" className="min-h-screen bg-background px-5 pb-8 pt-28 md:px-10">
-      <div className="mx-auto max-w-[1440px]">
-        <div className="mb-5 flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-text-muted">
-          <span>PIYUSH KANOJIYA</span>
-          <span>PIXELFORGE / 01</span>
+    <section id="top" className="px-5 pb-7 md:px-10">
+      <div className="mx-auto max-w-[1480px]">
+        <div className="mb-4 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
+          <span>Digital products / interfaces / experiments</span>
+          <span>01 — 06</span>
         </div>
 
-        <div className="pixel-frame relative overflow-hidden rounded-[18px] border border-white/80 bg-accent-soft p-4 md:p-8">
-          <div className="pixel-field relative min-h-[690px] overflow-hidden rounded-[12px] border border-white/80 md:min-h-[760px]">
-            <div className="absolute inset-0 bg-white/10" />
+        <div className="pixel-artboard relative overflow-hidden rounded-[22px] bg-white p-3 md:p-5">
+          <div className="pixel-grid relative min-h-[650px] overflow-hidden rounded-[16px] bg-[#eee9f7] md:min-h-[760px]">
+            <div className="absolute inset-0 grid grid-cols-8 grid-rows-7 gap-px opacity-75">
+              {cells.map(([tone, span], index) => (
+                <span
+                  key={index}
+                  className={`pixel-cell ${tone} ${span} opacity-80`}
+                />
+              ))}
+            </div>
 
-            <div className="absolute left-5 top-5 flex items-center gap-2 md:left-8 md:top-6">
+            <div className="absolute inset-0 bg-white/25" />
+
+            <div className="absolute left-5 top-5 flex items-center gap-2 md:left-8 md:top-7">
               <span className="h-2.5 w-2.5 bg-foreground" />
-              <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-text-secondary">
-                PixelForge / Digital Workshop
+              <span className="font-mono text-[9px] uppercase tracking-[0.15em]">
+                PixelForge / digital workshop
               </span>
             </div>
 
-            <div className="absolute left-[7%] top-[24%] text-[9px] uppercase tracking-[0.22em] text-text-secondary">
-              A DEVELOPER&apos;S WORKSHOP / DIGITAL PRODUCTS
+            <div className="absolute right-5 top-5 font-mono text-[9px] uppercase tracking-[0.15em] md:right-8 md:top-7">
+              Nagpur / India
             </div>
 
-            <div className="absolute right-[7%] top-[24%] text-[9px] uppercase tracking-[0.22em] text-text-secondary">
-              PIXELFORGE
-            </div>
+            <div className="absolute left-5 right-5 top-[29%] md:left-[7%] md:right-[7%] md:top-[27%]">
+              <div className="mb-4 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
+                <span>Session 01</span>
+                <span>Software × curiosity</span>
+              </div>
 
-            <div className="absolute inset-x-5 top-[34%] text-center md:inset-x-10">
-              <h1 className="font-mono text-[clamp(3.8rem,10vw,9.8rem)] font-black leading-[0.8] tracking-[-0.11em] text-foreground">
-                Pixel
-                <span className="font-sans font-light tracking-[-0.08em] text-text-secondary">
-                  &
-                </span>
-                <br className="md:hidden" /> Forge
+              <h1 className="max-w-[1100px] text-[clamp(4rem,11vw,10.5rem)] font-semibold leading-[0.78] tracking-[-0.09em]">
+                Pixel <span className="font-light">&amp;</span>
+                <br />
+                Process
               </h1>
             </div>
 
-            <div className="absolute bottom-[14%] left-[7%] max-w-md">
-              <p className="mb-3 font-mono text-[9px] uppercase tracking-[0.2em] text-text-secondary">
-                SESSION 01 — THE DIGITAL WORKSHOP
-              </p>
-              <p className="max-w-sm text-sm leading-6 text-text-secondary md:text-base">
-                Software, interfaces, and experiments built with curiosity,
-                precision, and a bias toward making things real.
-              </p>
-            </div>
-
-            <div className="absolute bottom-[13%] right-[7%] w-44">
-              <div className="border border-black/10 bg-white/55 p-3 backdrop-blur-sm">
-                <div className="flex items-start gap-3">
-                  <CalendarDays size={15} strokeWidth={1.5} />
-                  <div>
-                    <p className="font-mono text-[9px] uppercase tracking-[0.1em]">
-                      Available
-                    </p>
-                    <p className="mt-1 text-[10px] text-text-secondary">
-                      Building / learning / shipping
-                    </p>
-                  </div>
+            <div className="absolute bottom-5 left-5 md:bottom-8 md:left-[7%]">
+              <div className="flex items-center gap-4">
+                <div className="session-ring flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-green font-mono text-[10px] md:h-20 md:w-20">
+                  01 / 06
                 </div>
-                <div className="mt-3 flex items-center gap-3 border-t border-black/10 pt-3">
-                  <Video size={14} strokeWidth={1.5} />
-                  <span className="font-mono text-[9px] uppercase tracking-[0.1em]">
-                    Online
-                  </span>
-                </div>
+                <p className="max-w-xs text-[11px] leading-5 text-muted md:text-xs">
+                  I build software, interfaces, and experiments — turning rough
+                  ideas into things people can actually use.
+                </p>
               </div>
-
-              <a
-                href="#work"
-                className="mt-3 flex items-center justify-between bg-accent px-4 py-3 text-xs font-semibold text-white transition-transform hover:-translate-y-0.5"
-              >
-                Explore work
-                <ArrowDownRight size={15} strokeWidth={1.7} />
-              </a>
             </div>
 
-            <div className="pixel-dots absolute bottom-0 left-0 right-0 h-9 border-t border-black/10 opacity-50" />
+            <a
+              href="#work"
+              className="absolute bottom-5 right-5 inline-flex items-center gap-4 bg-green px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.12em] md:bottom-8 md:right-[7%]"
+            >
+              Explore the work
+              <ArrowDownRight size={15} strokeWidth={1.6} />
+            </a>
           </div>
         </div>
 
-        <div className="mt-4 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.15em] text-text-muted">
-          <span>Software / Interfaces / Experiments</span>
-          <span>Scroll to explore ↓</span>
+        <div className="mt-4 flex justify-between border-b editorial-rule pb-4 font-mono text-[9px] uppercase tracking-[0.16em] text-muted">
+          <span>Piyush Kanojiya / 2026</span>
+          <span>Scroll ↓</span>
         </div>
       </div>
     </section>
