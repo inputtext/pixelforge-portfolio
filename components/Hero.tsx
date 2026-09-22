@@ -1,105 +1,105 @@
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
-
-const focusAreas = ["Software", "Interfaces", "Experiments"];
+import { ArrowDownRight, CalendarDays, Video } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section
-      id="top"
-      className="relative min-h-screen overflow-hidden px-6 pb-12 pt-32 md:px-10 md:pb-16"
-    >
-      <div className="mx-auto flex min-h-[calc(100vh-9rem)] w-full max-w-[1400px] flex-col justify-between">
-        <div className="grid items-end gap-12 lg:grid-cols-[1fr_420px]">
-          <div>
-            <div className="mb-8 flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent-green" />
-              <span>Software developer / India</span>
-            </div>
-
-            <h1 className="max-w-5xl text-[clamp(4rem,10vw,9.5rem)] font-semibold leading-[0.82] tracking-[-0.075em] text-text-primary">
-              Build.
-              <br />
-              <span className="text-text-secondary">Break.</span>
-              <br />
-              <span className="text-accent">Repeat.</span>
-            </h1>
-          </div>
-
-          <div className="relative flex min-h-[300px] items-center justify-center lg:min-h-[360px]">
-            <div className="absolute h-[280px] w-[280px] rounded-full border border-border md:h-[340px] md:w-[340px]" />
-            <div className="absolute h-[210px] w-[210px] rounded-full border border-border-strong md:h-[260px] md:w-[260px]" />
-
-            <div className="relative flex h-36 w-36 items-center justify-center rounded-full bg-accent text-center md:h-44 md:w-44">
-              <div>
-                <span className="block font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">
-                  PixelForge
-                </span>
-                <span className="mt-2 block text-4xl font-semibold tracking-[-0.06em] text-white md:text-5xl">
-                  01
-                </span>
-              </div>
-            </div>
-
-            <span className="absolute right-[8%] top-[16%] h-3 w-3 rounded-full bg-accent-green" />
-            <span className="absolute bottom-[12%] left-[10%] h-2 w-2 rounded-full bg-accent-soft" />
-          </div>
+    <section id="top" className="min-h-screen bg-background px-5 pb-8 pt-28 md:px-10">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="mb-5 flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-text-muted">
+          <span>PIYUSH KANOJIYA</span>
+          <span>PIXELFORGE / 01</span>
         </div>
 
-        <div className="grid gap-10 border-t border-border pt-6 md:grid-cols-[1fr_1fr] md:items-end">
-          <p className="max-w-xl text-base leading-7 text-text-secondary md:text-lg">
-            Developer focused on thoughtful interfaces, reliable software, and
-            experiments that turn ideas into working products.
-          </p>
+        <div className="pixel-frame relative overflow-hidden rounded-[18px] border border-white/80 bg-accent-soft p-4 md:p-8">
+          <div className="pixel-field relative min-h-[690px] overflow-hidden rounded-[12px] border border-white/80 md:min-h-[760px]">
+            <div className="absolute inset-0 bg-white/10" />
 
-          <div className="flex flex-col justify-between gap-7 md:flex-row md:items-end">
-            <div className="w-full max-w-sm">
-              <div className="mb-4 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] text-text-muted">
-                <span>Current focus</span>
-                <span>01 — 03</span>
+            <div className="absolute inset-x-0 top-0 flex h-14 items-center justify-between border-b border-black/10 bg-white/70 px-5 backdrop-blur-sm md:px-8">
+              <div className="flex items-center gap-2 text-xs font-semibold tracking-[-0.02em]">
+                <span className="h-3 w-3 rounded-full bg-foreground" />
+                <span>PIXELFORGE STUDIO</span>
               </div>
 
-              <div className="grid grid-cols-3 border-y border-border">
-                {focusAreas.map((area, index) => (
-                  <div
-                    key={area}
-                    className="group border-r border-border px-3 py-4 last:border-r-0"
-                  >
-                    <span className="mb-4 block font-mono text-[9px] text-text-muted">
-                      0{index + 1}
-                    </span>
-                    <span className="block text-xs text-text-secondary transition-colors group-hover:text-text-primary">
-                      {area}
-                    </span>
+              <div className="hidden items-center gap-7 text-[10px] uppercase tracking-[0.14em] text-text-secondary md:flex">
+                <span>work</span>
+                <span>process</span>
+                <span>experiments</span>
+                <span>about</span>
+              </div>
+
+              <a
+                href="#contact"
+                className="bg-accent-green px-4 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground transition-transform hover:-translate-y-0.5"
+              >
+                Contact
+              </a>
+            </div>
+
+            <div className="absolute left-[7%] top-[24%] text-[9px] uppercase tracking-[0.22em] text-text-secondary">
+              A DEVELOPER&apos;S WORKSHOP / DIGITAL PRODUCTS
+            </div>
+
+            <div className="absolute right-[7%] top-[24%] text-[9px] uppercase tracking-[0.22em] text-text-secondary">
+              PIXELFORGE
+            </div>
+
+            <div className="absolute inset-x-5 top-[34%] text-center md:inset-x-10">
+              <h1 className="font-mono text-[clamp(3.8rem,10vw,9.8rem)] font-black leading-[0.8] tracking-[-0.11em] text-foreground">
+                Pixel
+                <span className="font-sans font-light tracking-[-0.08em] text-text-secondary">
+                  &
+                </span>
+                <br className="md:hidden" /> Forge
+              </h1>
+            </div>
+
+            <div className="absolute bottom-[14%] left-[7%] max-w-md">
+              <p className="mb-3 font-mono text-[9px] uppercase tracking-[0.2em] text-text-secondary">
+                SESSION 01 — THE DIGITAL WORKSHOP
+              </p>
+              <p className="max-w-sm text-sm leading-6 text-text-secondary md:text-base">
+                Software, interfaces, and experiments built with curiosity,
+                precision, and a bias toward making things real.
+              </p>
+            </div>
+
+            <div className="absolute bottom-[13%] right-[7%] w-44">
+              <div className="border border-black/10 bg-white/55 p-3 backdrop-blur-sm">
+                <div className="flex items-start gap-3">
+                  <CalendarDays size={15} strokeWidth={1.5} />
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-[0.1em]">
+                      Available
+                    </p>
+                    <p className="mt-1 text-[10px] text-text-secondary">
+                      Building / learning / shipping
+                    </p>
                   </div>
-                ))}
+                </div>
+                <div className="mt-3 flex items-center gap-3 border-t border-black/10 pt-3">
+                  <Video size={14} strokeWidth={1.5} />
+                  <span className="font-mono text-[9px] uppercase tracking-[0.1em]">
+                    Online
+                  </span>
+                </div>
               </div>
+
+              <a
+                href="#work"
+                className="mt-3 flex items-center justify-between bg-accent px-4 py-3 text-xs font-semibold text-white transition-transform hover:-translate-y-0.5"
+              >
+                Explore work
+                <ArrowDownRight size={15} strokeWidth={1.7} />
+              </a>
             </div>
 
-            <a
-              href="#work"
-              className="group inline-flex shrink-0 items-center gap-2 text-sm font-medium text-text-primary"
-            >
-              Explore selected work
-              <ArrowDownRight
-                size={17}
-                strokeWidth={1.7}
-                className="transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1"
-              />
-            </a>
+            <div className="pixel-dots absolute bottom-0 left-0 right-0 h-9 border-t border-black/10 opacity-50" />
           </div>
         </div>
 
-        <a
-          href="#about"
-          className="group mt-8 inline-flex w-fit items-center gap-2 text-xs uppercase tracking-[0.16em] text-text-muted transition-colors hover:text-text-primary"
-        >
-          More about me
-          <ArrowUpRight
-            size={14}
-            strokeWidth={1.7}
-            className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-          />
-        </a>
+        <div className="mt-4 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.15em] text-text-muted">
+          <span>Software / Interfaces / Experiments</span>
+          <span>Scroll to explore ↓</span>
+        </div>
       </div>
     </section>
   );
