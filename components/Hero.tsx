@@ -1,8 +1,25 @@
 "use client";
 
 import { MapPin, Play } from "lucide-react";
+import { useState } from "react";
+
+type TimeOfDay = "sunrise" | "day" | "dusk" | "night";
+
+const timeModes: { id: TimeOfDay; label: string; glyph: string }[] = [
+  { id: "sunrise", label: "Sunrise", glyph: "☼" },
+  { id: "day", label: "Day", glyph: "☀" },
+  { id: "dusk", label: "Dusk", glyph: "◒" },
+  { id: "night", label: "Night", glyph: "☾" },
+];
 
 export default function Hero() {
+  const [time, setTime] = useState<TimeOfDay>("sunrise");
+
+  const cycleTime = () => {
+    const index = timeModes.findIndex((mode) => mode.id === time);
+    setTime(timeModes[(index + 1) % timeModes.length].id);
+  };
+
   return (
     <section id="top" className="px-5 pb-8 md:px-10">
       <div className="mx-auto max-w-[1480px]">
@@ -61,53 +78,96 @@ export default function Hero() {
           </div>
 
           <div className="pixel-artboard bg-lavender p-3 md:p-4">
-            <div className="pixel-scene h-full min-h-[620px]">
-              <div className="sky" />
-              <div className="window" />
-              <div className="poster" />
-              <div className="lamp" />
-              <div className="plant" />
-              <div className="desk" />
-              <div className="monitor">
-                <div className="monitor-topbar">
-                  <span className="monitor-dot" />
-                  <span className="monitor-file">portfolio.tsx</span>
-                  <span className="monitor-actions">— □ ×</span>
+            <button
+              type="button"
+              aria-label={`Change time of day. Current: ${time}`}
+              onClick={cycleTime}
+              className="pixel-scene-button"
+            >
+              <div className="pixel-scene" data-time={time}>
+                <div className="sky">
+                  <span className="pixel-sun" />
+                  <span className="pixel-stars" />
                 </div>
-                <div className="monitor-code">
-                  <span className="code-line"><b>01</b><i>import</i> React <em>from</em> &quot;react&quot;;</span>
-                  <span className="code-line"><b>02</b><i>const</i> PixelForge <em>=</em> () <em>=&gt;</em> &#123;</span>
-                  <span className="code-line"><b>03</b>&nbsp;&nbsp;<span className="code-purple">return</span> (</span>
-                  <span className="code-line"><b>04</b>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="code-blue">main</span> className=<span className="code-green">&quot;pixel&quot;</span>&gt;</span>
-                  <span className="code-line"><b>05</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Build<span className="code-pink">.</span>Explore<span className="code-pink">.</span>Ship<span className="code-pink">.</span></span>
-                  <span className="code-line"><b>06</b>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="code-blue">main</span>&gt;</span>
-                  <span className="code-line"><b>07</b>&nbsp;&nbsp;);</span>
-                  <span className="code-line"><b>08</b>&#125;;</span>
+                <div className="window">
+                  <span className="window-glow" />
+                  <span className="window-sun" />
+                  <span className="window-moon" />
+                  <span className="window-city" />
+                  <span className="window-lights" />
                 </div>
-                <div className="monitor-terminal">
-                  <span>› npm run build</span>
-                  <span className="terminal-ok">✓ compiled successfully</span>
+                <div className="poster" />
+                <div className="lamp" />
+                <div className="plant" />
+                <div className="desk" />
+                <div className="monitor">
+                  <div className="monitor-topbar">
+                    <span className="monitor-dot" />
+                    <span className="monitor-file">portfolio.tsx</span>
+                    <span className="monitor-actions">— □ ×</span>
+                  </div>
+                  <div className="monitor-code">
+                    <span className="code-line"><b>01</b><i>import</i> React <em>from</em> &quot;react&quot;;</span>
+                    <span className="code-line"><b>02</b><i>const</i> PixelForge <em>=</em> () <em>=&gt;</em> &#123;</span>
+                    <span className="code-line"><b>03</b>&nbsp;&nbsp;<span className="code-purple">return</span> (</span>
+                    <span className="code-line"><b>04</b>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="code-blue">main</span> className=<span className="code-green">&quot;pixel&quot;</span>&gt;</span>
+                    <span className="code-line"><b>05</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Build<span className="code-pink">.</span>Explore<span className="code-pink">.</span>Ship<span className="code-pink">.</span></span>
+                    <span className="code-line"><b>06</b>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="code-blue">main</span>&gt;</span>
+                    <span className="code-line"><b>07</b>&nbsp;&nbsp;);</span>
+                    <span className="code-line"><b>08</b>&#125;;</span>
+                  </div>
+                  <div className="monitor-terminal">
+                    <span>› npm run build</span>
+                    <span className="terminal-ok">✓ compiled successfully</span>
+                  </div>
                 </div>
+                <div className="keyboard"><span /></div>
+                <div className="mug" />
+                <div className="books" />
+                <div className="clock">
+                  <span className="clock-time">
+                    {time === "sunrise" ? "06:23" : time === "day" ? "12:40" : time === "dusk" ? "18:47" : "22:13"}
+                  </span>
+                </div>
+                <div className="cat" />
+                <div className="absolute right-5 top-5 max-w-[118px] text-right text-[10px] font-bold uppercase leading-[1.35]">
+                  A better
+                  <br />
+                  internet
+                  <br />
+                  together.
+                  <span className="ml-auto mt-3 block h-1 w-12 bg-foreground" />
+                </div>
+                <div className="absolute bottom-5 left-5 text-[9px] font-bold uppercase text-white">
+                  Good ideas
+                  <br />
+                  take time.
+                </div>
+                <span className="scene-hint">CLICK SCENE TO CHANGE TIME</span>
               </div>
-              <div className="keyboard">
+            </button>
+
+            <div className="time-controls" aria-label="Time of day">
+              <div className="time-controls-title">TIME OF DAY</div>
+              <div className="time-options">
+                {timeModes.map((mode) => (
+                  <button
+                    key={mode.id}
+                    type="button"
+                    aria-pressed={time === mode.id}
+                    onClick={() => setTime(mode.id)}
+                    className="time-option"
+                  >
+                    <span>{mode.glyph}</span>
+                    {mode.label}
+                  </button>
+                ))}
+              </div>
+              <div className="time-note">
+                SAME ROOM.
+                <br />
+                DIFFERENT PERSPECTIVE.
                 <span />
-              </div>
-              <div className="mug" />
-              <div className="books" />
-              <div className="clock">01:27</div>
-              <div className="cat" />
-              <div className="absolute right-5 top-5 max-w-[118px] text-right text-[10px] font-bold uppercase leading-[1.35]">
-                A better
-                <br />
-                internet
-                <br />
-                together.
-                <span className="ml-auto mt-3 block h-1 w-12 bg-foreground" />
-              </div>
-              <div className="absolute bottom-5 left-5 text-[9px] font-bold uppercase text-white">
-                Good ideas
-                <br />
-                take time.
               </div>
             </div>
           </div>
