@@ -32,9 +32,9 @@ const projects = [
 
 export default function SelectedWork() {
   return (
-    <section id="work" className="px-6 py-28 md:px-10 md:py-40">
+    <section id="work" className="px-6 py-20 md:px-10 md:py-28">
       <div className="mx-auto max-w-[1400px]">
-        <div className="mb-14 grid gap-6 border-t border-border pt-5 md:grid-cols-[1fr_2fr]">
+        <div className="mb-12 grid gap-6 border-t border-border pt-5 md:grid-cols-[1fr_2fr]">
           <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-text-muted">
             <span className="font-mono">01</span>
             <span>Selected work</span>
@@ -52,7 +52,7 @@ export default function SelectedWork() {
           {projects.map((project) => (
             <article
               key={project.number}
-              className="group grid gap-8 py-8 md:grid-cols-[72px_1fr_260px] md:items-center md:py-10"
+              className="group grid gap-8 py-7 md:grid-cols-[72px_1fr_260px] md:items-center md:py-8"
             >
               <span className="font-mono text-xs text-text-muted">
                 {project.number}
