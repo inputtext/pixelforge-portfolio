@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, MapPin, Play } from "lucide-react";
+import { MapPin, Play } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -16,7 +16,7 @@ export default function Hero() {
                 <span>Build / Experiment / Design</span>
               </div>
 
-              <h1 className="text-[clamp(4.3rem,10.5vw,9.5rem)] font-bold leading-[.72] tracking-[-.07em]">
+              <h1 className="max-w-[720px] text-[clamp(3.9rem,8.6vw,7.8rem)] font-bold leading-[.76] tracking-[-.065em]">
                 PIXEL <span>&amp;</span>
                 <br />
                 <span className="text-purple">FORGE</span>
@@ -68,7 +68,31 @@ export default function Hero() {
               <div className="lamp" />
               <div className="plant" />
               <div className="desk" />
-              <div className="monitor" />
+              <div className="monitor">
+                <div className="monitor-topbar">
+                  <span className="monitor-dot" />
+                  <span className="monitor-file">portfolio.tsx</span>
+                  <span className="monitor-actions">— □ ×</span>
+                </div>
+                <div className="monitor-code">
+                  <span className="code-line"><b>01</b><i>import</i> React <em>from</em> &quot;react&quot;;</span>
+                  <span className="code-line"><b>02</b><i>const</i> PixelForge <em>=</em> () <em>=&gt;</em> &#123;</span>
+                  <span className="code-line"><b>03</b>&nbsp;&nbsp;<span className="code-purple">return</span> (</span>
+                  <span className="code-line"><b>04</b>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="code-blue">main</span> className=<span className="code-green">&quot;pixel&quot;</span>&gt;</span>
+                  <span className="code-line"><b>05</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Build<span className="code-pink">.</span>Explore<span className="code-pink">.</span>Ship<span className="code-pink">.</span></span>
+                  <span className="code-line"><b>06</b>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="code-blue">main</span>&gt;</span>
+                  <span className="code-line"><b>07</b>&nbsp;&nbsp;);</span>
+                  <span className="code-line"><b>08</b>&#125;;</span>
+                </div>
+                <div className="monitor-terminal">
+                  <span>› npm run build</span>
+                  <span className="terminal-ok">✓ compiled successfully</span>
+                </div>
+              </div>
+              <div className="keyboard">
+                <span />
+              </div>
+              <div className="mug" />
               <div className="books" />
               <div className="clock">01:27</div>
               <div className="cat" />
@@ -78,7 +102,7 @@ export default function Hero() {
                 internet
                 <br />
                 together.
-                <span className="mt-3 block h-1 w-12 bg-foreground ml-auto" />
+                <span className="ml-auto mt-3 block h-1 w-12 bg-foreground" />
               </div>
               <div className="absolute bottom-5 left-5 text-[9px] font-bold uppercase text-white">
                 Good ideas
