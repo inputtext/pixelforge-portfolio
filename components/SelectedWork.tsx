@@ -1,72 +1,44 @@
 import { ArrowUpRight } from "lucide-react";
 
 const projects = [
-  {
-    no: "01",
-    title: "DevCollective",
-    type: "Community / platform",
-    text: "A developer community for reputation, learning paths, mentorship, and collaborative knowledge.",
-    color: "bg-purple",
-  },
-  {
-    no: "02",
-    title: "Zero-Trust Vault",
-    type: "Security / WebAssembly",
-    text: "A client-side encrypted vault exploring native cryptography, WASM, and zero-trust storage.",
-    color: "bg-lavender",
-  },
-  {
-    no: "03",
-    title: "CFlow",
-    type: "Interactive / web",
-    text: "An expressive landing experience built around depth, movement, and visual storytelling.",
-    color: "bg-green",
-  },
+  ["01","DevCollective","Student community platform","bg-purple","REP / MENTORS / ROADMAPS"],
+  ["02","Zero-Trust Vault","Client-side encrypted vault","bg-lavender","C++ / WASM / CRYPTO"],
+  ["03","CFlow","Interactive landing experience","bg-green","REACT / GSAP / LENIS"],
 ];
 
 export default function SelectedWork() {
   return (
-    <section id="work" className="px-5 py-24 md:px-10 md:py-32">
+    <section id="work" className="px-5 py-20 md:px-10 md:py-28">
       <div className="mx-auto max-w-[1480px]">
-        <div className="mb-12 grid gap-8 border-t editorial-rule pt-4 md:grid-cols-[1fr_1.4fr]">
-          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
-            02 / Selected work
+        <div className="mb-10 flex items-end justify-between gap-6 border-b-2 border-foreground pb-4">
+          <div className="flex items-center gap-3 text-sm font-bold uppercase">
+            <span className="grid h-7 w-7 place-items-center border-2 border-foreground bg-paper">02</span>
+            Selected work
           </div>
-          <p className="max-w-2xl text-2xl leading-[1.05] tracking-[-0.045em] md:text-4xl">
-            A small collection of things I&apos;ve built, broken, rebuilt, and shipped.
-          </p>
+          <span className="hidden text-xs font-semibold text-muted md:block">Real projects. Real learnings. ↗</span>
         </div>
 
-        <div className="divide-y editorial-rule border-y">
-          {projects.map((project) => (
-            <a
-              key={project.no}
-              href="#contact"
-              className="group grid gap-8 py-8 md:grid-cols-[72px_1fr_1.2fr_180px] md:items-center"
-            >
-              <span className="font-mono text-[10px] text-muted">{project.no}</span>
-
-              <div className="flex items-center gap-5">
-                <span className={`session-ring flex h-16 w-16 shrink-0 items-center justify-center rounded-full ${project.color} font-mono text-[9px]`}>
-                  VIEW
-                </span>
-                <div>
-                  <p className="mb-1 font-mono text-[9px] uppercase tracking-[0.15em] text-muted">
-                    {project.type}
-                  </p>
-                  <h2 className="text-3xl font-medium tracking-[-0.06em] md:text-5xl">
-                    {project.title}
-                  </h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          {projects.map(([no,title,type,color,stack]) => (
+            <a key={no} href="#contact" className="group pixel-border bg-paper p-3 transition-transform hover:-translate-y-1">
+              <div className="flex items-start justify-between border-b-2 border-foreground pb-4">
+                <div className="flex items-center gap-3">
+                  <span className={`grid h-11 w-11 place-items-center border-2 border-foreground ${color} font-bold`}>{no}</span>
+                  <div>
+                    <h2 className="text-xl font-bold">{title}</h2>
+                    <p className="text-[10px] uppercase text-muted">{type}</p>
+                  </div>
                 </div>
+                <ArrowUpRight size={19} strokeWidth={2.5} />
               </div>
-
-              <p className="max-w-xl text-sm leading-6 text-muted md:text-[15px]">
-                {project.text}
-              </p>
-
-              <div className="flex items-center justify-end gap-2 font-mono text-[9px] uppercase tracking-[0.14em] text-muted">
-                Open project
-                <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+              <div className={`pixel-grid relative mt-3 h-44 overflow-hidden border-2 border-foreground ${color}`}>
+                <div className="absolute inset-[12%] border-2 border-foreground bg-paper/40" />
+                <div className="absolute left-[20%] top-[25%] h-12 w-16 border-2 border-foreground bg-blue" />
+                <div className="absolute right-[16%] top-[36%] h-20 w-8 border-2 border-foreground bg-pink" />
+                <div className="absolute bottom-[12%] left-[34%] h-10 w-24 border-2 border-foreground bg-yellow" />
+              </div>
+              <div className="flex items-center justify-between pt-4 text-[9px] font-bold uppercase">
+                <span>{stack}</span><span className="text-blue">Open ↗</span>
               </div>
             </a>
           ))}
