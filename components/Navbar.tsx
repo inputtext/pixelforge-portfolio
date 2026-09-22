@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-background/75 backdrop-blur-md">
       <nav className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 py-6 md:px-10">
         <a
           href="/"
