@@ -1,24 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0b0d;
-  --foreground: #f3f1ec;
+  --background: #f8f7f5;
+  --foreground: #070709;
+  --surface: #ffffff;
+  --surface-hover: #f1eff8;
 
-  --surface: #111114;
-  --surface-hover: #17171b;
+  --text-primary: #070709;
+  --text-secondary: #55545b;
+  --text-muted: #85848a;
 
-  --text-primary: #f3f1ec;
-  --text-secondary: #a7a5a0;
-  --text-muted: #6f6d68;
+  --accent: #9963e9;
+  --accent-soft: #a09dcf;
+  --accent-green: #6b9d93;
 
-  --accent: #6859e8;
-  --accent-soft: #a49ce5;
-  --accent-green: #789c92;
+  --border: #dedde1;
+  --border-strong: #bdbbc2;
 
-  --border: #252529;
-  --border-strong: #36363c;
-
-  --selection-background: #6859e8;
+  --selection-background: #9963e9;
   --selection-foreground: #ffffff;
 }
 
@@ -39,9 +38,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
@@ -51,9 +48,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 78% 14%, rgba(104, 89, 232, 0.08), transparent 24rem),
-    var(--background);
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -65,68 +60,41 @@ body {
   color: var(--selection-foreground);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+img { max-width: 100%; height: auto; }
 
-button {
-  font: inherit;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-::selection {
-  background: var(--accent);
-  color: #fff;
-}
-
-.pixel-grid {
+.pixel-field {
+  background-color: #e7ddf6;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(rgba(255,255,255,.24) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.24) 1px, transparent 1px),
+    linear-gradient(125deg, rgba(160,157,207,.72), transparent 38%),
+    linear-gradient(35deg, rgba(153,99,233,.5), transparent 42%),
+    linear-gradient(165deg, transparent 48%, rgba(107,157,147,.42) 49%, transparent 63%),
+    linear-gradient(75deg, transparent 35%, rgba(255,218,173,.45) 36%, transparent 54%),
+    linear-gradient(15deg, rgba(244,184,205,.5), transparent 52%);
+  background-size: 32px 32px, 32px 32px, 55% 55%, 70% 70%, 65% 75%, 55% 65%, 80% 70%;
+  background-position: 0 0, 0 0, 0 0, 100% 0, 10% 100%, 90% 15%, 45% 40%;
 }
 
-.pixel-mark {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  width: 32px;
-  height: 32px;
-  gap: 2px;
+.pixel-frame {
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.65),
+    0 18px 45px rgba(82,63,120,.16);
 }
 
-.pixel-mark span:nth-child(1),
-.pixel-mark span:nth-child(6),
-.pixel-mark span:nth-child(11),
-.pixel-mark span:nth-child(16) {
-  background: var(--accent);
-}
-
-.pixel-mark span:nth-child(4),
-.pixel-mark span:nth-child(7),
-.pixel-mark span:nth-child(10),
-.pixel-mark span:nth-child(13) {
-  background: var(--accent-green);
+.pixel-dots {
+  background-image: radial-gradient(rgba(7,7,9,.25) 1px, transparent 1px);
+  background-size: 12px 12px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
   }
 }
