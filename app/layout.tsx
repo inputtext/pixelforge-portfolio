@@ -21,7 +21,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={"--font-pixel --font-pixel-mono h-full antialiased"}>
+    <html
+      lang="en"
+      className={pixel.variable + " " + mono.variable + " h-full antialiased"}
+    >
       <body className="min-h-full">{children}</body>
     </html>
   );
