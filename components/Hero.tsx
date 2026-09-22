@@ -8,7 +8,7 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-screen items-end overflow-hidden px-6 pb-10 pt-32 md:px-10 md:pb-12"
     >
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 pixel-grid opacity-40">
         <div className="absolute left-1/2 top-[42%] h-px w-[calc(100%-3rem)] -translate-x-1/2 bg-border md:w-[calc(100%-5rem)]" />
         <div className="absolute bottom-0 left-[18%] top-0 hidden w-px bg-border/60 md:block" />
         <div className="absolute bottom-0 right-[18%] top-0 hidden w-px bg-border/60 md:block" />
