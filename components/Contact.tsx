@@ -2,50 +2,51 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function Contact() {
   return (
-    <section id="contact" className="px-6 pb-8 pt-24 md:px-10 md:pb-10 md:pt-32">
-      <div className="mx-auto max-w-[1400px]">
-        <div className="relative overflow-hidden border border-border bg-surface px-6 py-12 md:px-10 md:py-16">
-          <div className="pixel-grid pointer-events-none absolute inset-0 opacity-60" />
+    <section id="contact" className="px-5 pb-8 pt-20 md:px-10 md:pt-28">
+      <div className="mx-auto max-w-[1480px]">
+        <div className="overflow-hidden rounded-[22px] bg-[#a09dcf] p-3 md:p-5">
+          <div className="pixel-grid relative min-h-[470px] overflow-hidden rounded-[16px] bg-[#e8e4f2] p-6 md:min-h-[560px] md:p-10">
+            <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-purple/80" />
+            <div className="absolute -bottom-20 left-1/3 h-64 w-64 rounded-full bg-green/70" />
+            <div className="absolute bottom-8 right-8 h-20 w-20 bg-yellow/80" />
 
-          <div className="relative grid gap-12 md:grid-cols-[1fr_auto] md:items-end">
-            <div>
-              <p className="mb-5 text-xs uppercase tracking-[0.2em] text-text-muted">
-                04 — Contact
-              </p>
-              <h2 className="max-w-4xl text-[clamp(2.8rem,7vw,7rem)] font-semibold leading-[0.88] tracking-[-0.07em] text-text-primary">
-                Have something
-                <br />
-                worth building<span className="text-accent">?</span>
-              </h2>
+            <div className="relative z-10 flex h-full min-h-[420px] flex-col justify-between md:min-h-[500px]">
+              <div className="flex items-start justify-between font-mono text-[9px] uppercase tracking-[0.16em]">
+                <span>05 / Contact</span>
+                <span>Open for conversations</span>
+              </div>
+
+              <div className="max-w-5xl">
+                <p className="mb-4 font-mono text-[9px] uppercase tracking-[0.18em] text-muted">
+                  Build something worth opening a browser for.
+                </p>
+                <h2 className="text-[clamp(3.5rem,9vw,9rem)] font-semibold leading-[0.78] tracking-[-0.09em]">
+                  Let&apos;s
+                  <br />
+                  make it.
+                </h2>
+              </div>
+
+              <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                <p className="max-w-md text-sm leading-6 text-muted">
+                  Have an idea, a weird problem, or something that needs shipping?
+                  Find me on GitHub or LinkedIn.
+                </p>
+
+                <a
+                  href="https://github.com/inputtext"
+                  className="inline-flex items-center justify-between gap-8 bg-green px-5 py-4 text-[10px] font-semibold uppercase tracking-[0.14em]"
+                >
+                  Open GitHub <ArrowUpRight size={15} />
+                </a>
+              </div>
             </div>
-
-            <a
-              href="https://github.com/inputtext"
-              className="group inline-flex items-center gap-3 border border-border-strong px-5 py-4 text-sm text-text-primary transition-colors hover:bg-surface-hover"
-            >
-              Get in touch
-              <ArrowUpRight
-                size={17}
-                strokeWidth={1.6}
-                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </a>
           </div>
         </div>
 
-        <footer className="flex flex-col gap-4 py-7 text-xs text-text-muted md:flex-row md:items-center md:justify-between">
+        <footer className="flex flex-col gap-3 py-7 font-mono text-[9px] uppercase tracking-[0.15em] text-muted md:flex-row md:justify-between">
           <span>PixelForge — Piyush Kanojiya</span>
-          <div className="flex gap-6">
-            <a className="transition-colors hover:text-text-primary" href="https://github.com/inputtext">
-              GitHub
-            </a>
-            <a
-              className="transition-colors hover:text-text-primary"
-              href="https://www.linkedin.com/in/piyush-kanojiya-b78340358/"
-            >
-              LinkedIn
-            </a>
-          </div>
+          <span>React / Next / TypeScript / 2026</span>
         </footer>
       </div>
     </section>
