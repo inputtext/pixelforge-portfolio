@@ -18,9 +18,9 @@ const experiments = [
 
 export default function Experiments() {
   return (
-    <section id="experiments" className="px-6 py-28 md:px-10 md:py-40">
+    <section id="experiments" className="px-6 py-20 md:px-10 md:py-28">
       <div className="mx-auto max-w-[1400px]">
-        <div className="mb-16 flex flex-col justify-between gap-8 border-t border-border pt-5 md:flex-row md:items-start">
+        <div className="mb-10 flex flex-col justify-between gap-8 border-t border-border pt-5 md:flex-row md:items-start">
           <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-text-muted">
             <span className="font-mono">02</span>
             <span>Experiments / Lab</span>
@@ -36,7 +36,7 @@ export default function Experiments() {
           {experiments.map((experiment, index) => (
             <article
               key={experiment.code}
-              className="group relative min-h-[280px] border-b border-border p-6 md:min-h-[360px] md:border-b-0 md:border-r md:p-8 md:last:border-r-0"
+              className="group relative min-h-[260px] border-b border-border p-6 md:min-h-[320px] md:border-b-0 md:border-r md:p-8 md:last:border-r-0"
             >
               <div className="flex items-start justify-between">
                 <span className="font-mono text-[10px] tracking-[0.18em] text-text-muted">
