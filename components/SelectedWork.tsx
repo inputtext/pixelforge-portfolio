@@ -32,68 +32,62 @@ const projects = [
 
 export default function SelectedWork() {
   return (
-    <section id="work" className="px-6 py-20 md:px-10 md:py-28">
+    <section id="work" className="px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1400px]">
-        <div className="mb-12 grid gap-6 border-t border-border pt-5 md:grid-cols-[1fr_2fr]">
+        <div className="mb-16 flex flex-col justify-between gap-8 border-t border-border pt-5 md:flex-row md:items-start">
           <div className="flex items-center gap-3 text-xs uppercase tracking-[0.2em] text-text-muted">
             <span className="font-mono">01</span>
             <span>Selected work</span>
           </div>
 
-          <div className="max-w-2xl">
-            <p className="text-2xl leading-tight tracking-[-0.03em] text-text-primary md:text-4xl">
-              A few systems, products, and experiments I have built while
-              learning how software should feel.
-            </p>
-          </div>
+          <p className="max-w-xl text-xl leading-7 text-text-secondary md:text-2xl">
+            Systems, products, and experiments built from curiosity and
+            finished through iteration.
+          </p>
         </div>
 
-        <div className="divide-y divide-border border-y border-border">
+        <div className="grid gap-5 md:grid-cols-3">
           {projects.map((project) => (
             <article
               key={project.number}
-              className="group grid gap-8 py-7 md:grid-cols-[72px_1fr_260px] md:items-center md:py-8"
+              className="group relative min-h-[470px] overflow-hidden border border-border bg-surface p-6 md:p-7"
             >
-              <span className="font-mono text-xs text-text-muted">
-                {project.number}
-              </span>
-
-              <div>
-                <div className="mb-3 flex items-center gap-3">
-                  <span
-                    className={`h-2 w-2 rounded-full ${project.accent}`}
-                  />
-                  <span className="text-xs uppercase tracking-[0.16em] text-text-muted">
-                    {project.type}
-                  </span>
+              <div className="flex items-start justify-between">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-border-strong font-mono text-xs text-text-secondary transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+                  {project.number}
                 </div>
 
-                <h2 className="text-3xl font-medium tracking-[-0.04em] text-text-primary transition-transform duration-500 group-hover:translate-x-1 md:text-5xl">
+                <ArrowUpRight
+                  size={18}
+                  strokeWidth={1.5}
+                  className="text-text-muted transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-text-primary"
+                />
+              </div>
+
+              <div className="absolute left-1/2 top-1/2 flex h-40 w-40 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-border-strong transition-transform duration-700 group-hover:scale-110">
+                <div
+                  className={`h-24 w-24 rounded-full ${project.accent} opacity-80 transition-transform duration-700 group-hover:scale-90`}
+                />
+              </div>
+
+              <div className="absolute inset-x-6 bottom-6 md:inset-x-7 md:bottom-7">
+                <span className="mb-3 block text-[10px] uppercase tracking-[0.18em] text-text-muted">
+                  {project.type}
+                </span>
+
+                <h2 className="text-3xl font-medium tracking-[-0.05em] text-text-primary md:text-4xl">
                   {project.title}
                 </h2>
 
-                <p className="mt-4 max-w-2xl text-sm leading-6 text-text-secondary md:text-base">
+                <p className="mt-3 max-w-md text-sm leading-6 text-text-secondary">
                   {project.description}
                 </p>
-              </div>
 
-              <div className="flex items-end justify-between gap-5 md:block">
-                <div>
-                  <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-text-muted">
-                    Built with
-                  </p>
-                  <p className="font-mono text-xs text-text-secondary">
+                <div className="mt-5 border-t border-border pt-4">
+                  <span className="font-mono text-[10px] text-text-muted">
                     {project.stack}
-                  </p>
+                  </span>
                 </div>
-
-                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-text-secondary transition-all duration-300 group-hover:border-border-strong group-hover:bg-surface-hover group-hover:text-text-primary">
-                  <ArrowUpRight
-                    size={16}
-                    strokeWidth={1.6}
-                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  />
-                </span>
               </div>
             </article>
           ))}
