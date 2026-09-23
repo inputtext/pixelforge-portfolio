@@ -26,6 +26,7 @@ const codeLines = [
 export default function Hero() {
   const [time, setTime] = useState<TimeOfDay>("dusk");
   const [visibleCodeLines, setVisibleCodeLines] = useState(0);
+  const [codeRun, setCodeRun] = useState(0);
   const [roomStatus, setRoomStatus] = useState("Click an object in the room.");
   const [lampOn, setLampOn] = useState(true);
   const [blindsOpen, setBlindsOpen] = useState(false);
@@ -73,6 +74,7 @@ export default function Hero() {
         break;
       case "monitor":
         setVisibleCodeLines(0);
+        setCodeRun((value) => value + 1);
         setRoomStatus("Editor focused. The code starts writing again.");
         break;
       case "keyboard":
@@ -119,7 +121,7 @@ export default function Hero() {
 
     timer = setTimeout(writeLine, 650);
     return () => clearTimeout(timer);
-  }, []);
+  }, [codeRun]);
 
   useEffect(() => {
     const scene = sceneRef.current;
