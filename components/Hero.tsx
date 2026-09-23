@@ -12,8 +12,20 @@ const timeModes: { id: TimeOfDay; label: string; glyph: string }[] = [
   { id: "night", label: "Night", glyph: "☾" },
 ];
 
+const codeLines = [
+  <>import React <em>from</em> <span className="code-green">&quot;react&quot;</span>;</>,
+  <><i>const</i> PixelForge <em>=</em> () <em>=&gt;</em> &#123;</>,
+  <>&nbsp;&nbsp;<span className="code-purple">return</span> (</>,
+  <>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="code-blue">main</span> className=<span className="code-green">&quot;pixel&quot;</span>&gt;</>,
+  <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Build<span className="code-pink">.</span>Explore<span className="code-pink">.</span>Ship<span className="code-pink">.</span></>,
+  <>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="code-blue">main</span>&gt;</>,
+  <>&nbsp;&nbsp;);</>,
+  <>&#125;;</>,
+];
+
 export default function Hero() {
   const [time, setTime] = useState<TimeOfDay>("dusk");
+  const [visibleCodeLines, setVisibleCodeLines] = useState(0);
   const sceneRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
   const targetRef = useRef({ x: 0, y: 0 });
@@ -25,6 +37,25 @@ export default function Hero() {
     const index = timeModes.findIndex((mode) => mode.id === time);
     setTime(timeModes[(index + 1) % timeModes.length].id);
   };
+
+  useEffect(() => {
+    let line = 0;
+    let timer: ReturnType<typeof setTimeout>;
+
+    const writeLine = () => {
+      line += 1;
+      setVisibleCodeLines(line);
+
+      if (line < codeLines.length) {
+        timer = setTimeout(writeLine, 850);
+      } else {
+        timer = setTimeout(() => setVisibleCodeLines(0), 2800);
+      }
+    };
+
+    timer = setTimeout(writeLine, 650);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const scene = sceneRef.current;
@@ -203,14 +234,16 @@ export default function Hero() {
                     <span className="monitor-actions">— □ ×</span>
                   </div>
                   <div className="monitor-code">
-                    <span className="code-line"><b>01</b><i>import</i> React <em>from</em> &quot;react&quot;;</span>
-                    <span className="code-line"><b>02</b><i>const</i> PixelForge <em>=</em> () <em>=&gt;</em> &#123;</span>
-                    <span className="code-line"><b>03</b>&nbsp;&nbsp;<span className="code-purple">return</span> (</span>
-                    <span className="code-line"><b>04</b>&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span className="code-blue">main</span> className=<span className="code-green">&quot;pixel&quot;</span>&gt;</span>
-                    <span className="code-line"><b>05</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Build<span className="code-pink">.</span>Explore<span className="code-pink">.</span>Ship<span className="code-pink">.</span></span>
-                    <span className="code-line"><b>06</b>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span className="code-blue">main</span>&gt;</span>
-                    <span className="code-line"><b>07</b>&nbsp;&nbsp;);</span>
-                    <span className="code-line"><b>08</b>&#125;;</span>
+                    {codeLines.map((lineContent, index) => (
+                      <span
+                        key={index}
+                        className={`code-line ${index < visibleCodeLines ? "code-line-visible" : ""}`}
+                      >
+                        <b>{String(index + 1).padStart(2, "0")}</b>
+                        {index < visibleCodeLines ? lineContent : "\u00a0"}
+                      </span>
+                    ))}
+                    <span className="code-writing-cursor" aria-hidden="true" />
                   </div>
                   <div className="monitor-terminal">
                     <span>› npm run build</span>
