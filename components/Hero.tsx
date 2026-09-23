@@ -26,6 +26,10 @@ const codeLines = [
 export default function Hero() {
   const [time, setTime] = useState<TimeOfDay>("dusk");
   const [visibleCodeLines, setVisibleCodeLines] = useState(0);
+  const [roomStatus, setRoomStatus] = useState("Click an object in the room.");
+  const [lampOn, setLampOn] = useState(true);
+  const [blindsOpen, setBlindsOpen] = useState(false);
+  const [catAwake, setCatAwake] = useState(false);
   const sceneRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
   const targetRef = useRef({ x: 0, y: 0 });
@@ -36,6 +40,71 @@ export default function Hero() {
   const cycleTime = () => {
     const index = timeModes.findIndex((mode) => mode.id === time);
     setTime(timeModes[(index + 1) % timeModes.length].id);
+  };
+
+  const handleRoomAction = (item: string) => {
+    switch (item) {
+      case "window":
+        setBlindsOpen((value) => !value);
+        setRoomStatus(blindsOpen ? "Blinds closed. The room settles back into shade." : "Blinds open. More of the outside light comes in.");
+        break;
+      case "shelf-plant":
+        setRoomStatus("A little green corner. The plant catches the window light.");
+        break;
+      case "shelf-cube":
+        setRoomStatus("A small keepsake from the studio shelf.");
+        break;
+      case "shelf-bottle":
+        setRoomStatus("Water for long coding sessions.");
+        break;
+      case "frame-px":
+        setRoomStatus("PIXELFORGE — the mark behind the room.");
+        break;
+      case "frame-01":
+        setRoomStatus("01 — first frame, first idea.");
+        break;
+      case "frame-wave":
+        setRoomStatus("A tiny reminder to keep the work moving.");
+        break;
+      case "poster":
+        setRoomStatus("A BETTER INTERNET TOGETHER. The studio motto.");
+        break;
+      case "lamp":
+        setLampOn((value) => !value);
+        setRoomStatus(lampOn ? "Desk lamp off. The monitor becomes the focus." : "Desk lamp on. Warm light returns to the workspace.");
+        break;
+      case "plant":
+        setRoomStatus("The desk plant is doing its job: making the workspace feel alive.");
+        break;
+      case "monitor":
+        setVisibleCodeLines(0);
+        setRoomStatus("Editor focused. The code starts writing again.");
+        break;
+      case "keyboard":
+        setRoomStatus("Keyboard ready. This is where the work gets shipped.");
+        break;
+      case "mouse":
+        setRoomStatus("Pointer ready. Move through the interface.");
+        break;
+      case "mug":
+        setRoomStatus("Coffee break. Then back to the build.");
+        break;
+      case "notebook":
+        setRoomStatus("Loose notes: ideas before they become code.");
+        break;
+      case "books":
+        setRoomStatus("Reference stack: learn, build, repeat.");
+        break;
+      case "clock":
+        setRoomStatus("Time keeps moving. The room changes with it below.");
+        break;
+      case "cat":
+        setCatAwake((value) => !value);
+        setRoomStatus(catAwake ? "The cat went back to sleep." : "You woke the cat. It is watching the monitor.");
+        break;
+      default:
+        setRoomStatus("A small detail in the workspace.");
+    }
   };
 
   useEffect(() => {
@@ -188,99 +257,95 @@ export default function Hero() {
           </div>
 
           <div className="pixel-artboard bg-lavender p-3 md:p-4">
-            <button
-              type="button"
-              aria-label={`Change time of day. Current: ${time}`}
-              onClick={cycleTime}
-              className="pixel-scene-button"
-            >
-              <div ref={sceneRef} className="pixel-scene" data-time={time} data-hovering="false">
-                <div className="sky">
-                  <span className="pixel-sun" />
-                  <span className="pixel-stars" />
-                  <span className="sky-cloud cloud-one" />
-                  <span className="sky-cloud cloud-two" />
-                </div>
-                <div className="window">
-                  <span className="blind-rail" />
-                  <span className="blind-slats" />
-                  <span className="window-glow" />
-                  <span className="window-sun" />
-                  <span className="window-moon" />
-                  <span className="window-cloud window-cloud-one" />
-                  <span className="window-cloud window-cloud-two" />
-                  <span className="window-city" />
-                  <span className="window-lights" />
-                </div>
-                <div className="wall-shelf shelf-one">
-                  <span className="shelf-plant" />
-                  <span className="shelf-cube" />
-                </div>
-                <div className="wall-shelf shelf-two">
-                  <span className="shelf-bottle" />
-                </div>
-                <div className="wall-frame frame-one">PX</div>
-                <div className="wall-frame frame-two">01</div>
-                <div className="wall-frame frame-three">⌁</div>
-                <div className="poster" />
-                <div className="lamp" />
-                <div className="plant" />
-                <div className="desk" />
-                <div className="desk-backdrop" />
-                <div className="monitor">
-                  <div className="monitor-topbar">
-                    <span className="monitor-dot" />
-                    <span className="monitor-file">portfolio.tsx</span>
-                    <span className="monitor-actions">— □ ×</span>
-                  </div>
-                  <div className="monitor-code">
-                    {codeLines.map((lineContent, index) => (
-                      <span
-                        key={index}
-                        className={`code-line ${index < visibleCodeLines ? "code-line-visible" : ""}`}
-                      >
-                        <b>{String(index + 1).padStart(2, "0")}</b>
-                        {index < visibleCodeLines ? lineContent : "\u00a0"}
-                      </span>
-                    ))}
-                    <span className="code-writing-cursor" aria-hidden="true" />
-                  </div>
-                  <div className="monitor-terminal">
-                    <span>› npm run build</span>
-                    <span className="terminal-ok">✓ compiled successfully</span>
-                  </div>
-                </div>
-                <div className="keyboard"><span /></div>
-                <div className="mouse" />
-                <div className="mug" />
-                <div className="notebook" />
-                <div className="books" />
-                <div className="clock">
-                  <span className="clock-date">TUE, SEP 23</span>
-                  <span className="clock-time">
-                    {time === "sunrise" ? "06:23" : time === "day" ? "12:40" : time === "dusk" ? "18:47" : "22:13"}
-                  </span>
-                </div>
-                <div className="cat">
-                  <span className="cat-face" />
-                  <span className="cat-tail" />
-                </div>
-                <div className="absolute right-5 top-5 max-w-[118px] text-right text-[10px] font-bold uppercase leading-[1.35]">
-                  A better
-                  <br />
-                  internet
-                  <br />
-                  together.
-                  <span className="ml-auto mt-3 block h-1 w-12 bg-foreground" />
-                </div>
-                <div className="absolute bottom-5 left-5 text-[9px] font-bold uppercase text-white">
-                  Good ideas
-                  <br />
-                  take time.
-                </div>
-                <span className="scene-hint">MOVE YOUR CURSOR</span>
+            <div ref={sceneRef} className="pixel-scene" data-time={time} data-hovering="false" data-lamp={lampOn ? "on" : "off"} data-blinds={blindsOpen ? "open" : "closed"} data-cat={catAwake ? "awake" : "sleeping"}>
+              <button type="button" className="room-object window" aria-label="Toggle window blinds" onClick={() => handleRoomAction("window")}>
+                <span className="blind-rail" />
+                <span className="blind-slats" />
+                <span className="window-glow" />
+                <span className="window-sun" />
+                <span className="window-moon" />
+                <span className="window-cloud window-cloud-one" />
+                <span className="window-cloud window-cloud-two" />
+                <span className="window-city" />
+                <span className="window-lights" />
+              </button>
+
+              <button type="button" className="room-object wall-shelf shelf-one" aria-label="Inspect shelf plant and keepsake" onClick={() => handleRoomAction("shelf-plant")}>
+                <span className="shelf-plant" />
+                <span className="shelf-cube" />
+              </button>
+              <button type="button" className="room-object wall-shelf shelf-two" aria-label="Inspect shelf bottle" onClick={() => handleRoomAction("shelf-bottle")}>
+                <span className="shelf-bottle" />
+              </button>
+
+              <button type="button" className="room-object wall-frame frame-one" aria-label="Inspect PX frame" onClick={() => handleRoomAction("frame-px")}>PX</button>
+              <button type="button" className="room-object wall-frame frame-two" aria-label="Inspect 01 frame" onClick={() => handleRoomAction("frame-01")}>01</button>
+              <button type="button" className="room-object wall-frame frame-three" aria-label="Inspect wave frame" onClick={() => handleRoomAction("frame-wave")}>⌁</button>
+              <button type="button" className="room-object poster" aria-label="Read studio poster" onClick={() => handleRoomAction("poster")} />
+
+              <button type="button" className="room-object lamp" aria-label="Toggle desk lamp" aria-pressed={lampOn} onClick={() => handleRoomAction("lamp")} />
+              <button type="button" className="room-object plant" aria-label="Inspect desk plant" onClick={() => handleRoomAction("plant")} />
+              <button type="button" className="room-object desk" aria-label="Inspect desk" onClick={() => handleRoomAction("desk")} />
+              <div className="desk-backdrop" />
+
+              <button type="button" className="room-object monitor" aria-label="Focus coding monitor" onClick={() => handleRoomAction("monitor")}>
+                <span className="monitor-topbar">
+                  <span className="monitor-dot" />
+                  <span className="monitor-file">portfolio.tsx</span>
+                  <span className="monitor-actions">— □ ×</span>
+                </span>
+                <span className="monitor-code">
+                  {codeLines.map((lineContent, index) => (
+                    <span
+                      key={index}
+                      className={`code-line ${index < visibleCodeLines ? "code-line-visible" : ""}`}
+                    >
+                      <b>{String(index + 1).padStart(2, "0")}</b>
+                      {index < visibleCodeLines ? lineContent : "\u00a0"}
+                    </span>
+                  ))}
+                  <span className="code-writing-cursor" aria-hidden="true" />
+                </span>
+                <span className="monitor-terminal">
+                  <span>› npm run build</span>
+                  <span className="terminal-ok">✓ compiled successfully</span>
+                </span>
+              </button>
+
+              <button type="button" className="room-object keyboard" aria-label="Inspect keyboard" onClick={() => handleRoomAction("keyboard")}><span /></button>
+              <button type="button" className="room-object mouse" aria-label="Inspect mouse" onClick={() => handleRoomAction("mouse")} />
+              <button type="button" className="room-object mug" aria-label="Inspect coffee mug" onClick={() => handleRoomAction("mug")} />
+              <button type="button" className="room-object notebook" aria-label="Inspect notebook" onClick={() => handleRoomAction("notebook")} />
+              <button type="button" className="room-object books" aria-label="Inspect books" onClick={() => handleRoomAction("books")} />
+
+              <button type="button" className="room-object clock" aria-label="Inspect clock" onClick={() => handleRoomAction("clock")}>
+                <span className="clock-date">TUE, SEP 23</span>
+                <span className="clock-time">
+                  {time === "sunrise" ? "06:23" : time === "day" ? "12:40" : time === "dusk" ? "18:47" : "22:13"}
+                </span>
+              </button>
+
+              <button type="button" className="room-object cat" aria-label="Wake or sleep the cat" aria-pressed={catAwake} onClick={() => handleRoomAction("cat")}>
+                <span className="cat-face" />
+                <span className="cat-tail" />
+              </button>
+
+              <div className="absolute right-5 top-5 max-w-[118px] text-right text-[10px] font-bold uppercase leading-[1.35] pointer-events-none">
+                A better
+                <br />
+                internet
+                <br />
+                together.
+                <span className="ml-auto mt-3 block h-1 w-12 bg-foreground" />
               </div>
-            </button>
+              <div className="absolute bottom-5 left-5 text-[9px] font-bold uppercase text-white pointer-events-none">
+                Good ideas
+                <br />
+                take time.
+              </div>
+              <div className="room-status" aria-live="polite">{roomStatus}</div>
+              <span className="scene-hint">CLICK OBJECTS</span>
+            </div>
 
             <div className="time-controls" aria-label="Time of day">
               <div className="time-controls-title">TIME OF DAY</div>
