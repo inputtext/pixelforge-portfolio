@@ -13,7 +13,7 @@ const timeModes: { id: TimeOfDay; label: string; glyph: string }[] = [
 ];
 
 export default function Hero() {
-  const [time, setTime] = useState<TimeOfDay>("sunrise");
+  const [time, setTime] = useState<TimeOfDay>("dusk");
 
   const cycleTime = () => {
     const index = timeModes.findIndex((mode) => mode.id === time);
@@ -88,18 +88,35 @@ export default function Hero() {
                 <div className="sky">
                   <span className="pixel-sun" />
                   <span className="pixel-stars" />
+                  <span className="sky-cloud cloud-one" />
+                  <span className="sky-cloud cloud-two" />
                 </div>
                 <div className="window">
+                  <span className="blind-rail" />
+                  <span className="blind-slats" />
                   <span className="window-glow" />
                   <span className="window-sun" />
                   <span className="window-moon" />
+                  <span className="window-cloud window-cloud-one" />
+                  <span className="window-cloud window-cloud-two" />
                   <span className="window-city" />
                   <span className="window-lights" />
                 </div>
+                <div className="wall-shelf shelf-one">
+                  <span className="shelf-plant" />
+                  <span className="shelf-cube" />
+                </div>
+                <div className="wall-shelf shelf-two">
+                  <span className="shelf-bottle" />
+                </div>
+                <div className="wall-frame frame-one">PX</div>
+                <div className="wall-frame frame-two">01</div>
+                <div className="wall-frame frame-three">⌁</div>
                 <div className="poster" />
                 <div className="lamp" />
                 <div className="plant" />
                 <div className="desk" />
+                <div className="desk-backdrop" />
                 <div className="monitor">
                   <div className="monitor-topbar">
                     <span className="monitor-dot" />
@@ -122,14 +139,20 @@ export default function Hero() {
                   </div>
                 </div>
                 <div className="keyboard"><span /></div>
+                <div className="mouse" />
                 <div className="mug" />
+                <div className="notebook" />
                 <div className="books" />
                 <div className="clock">
+                  <span className="clock-date">TUE, SEP 23</span>
                   <span className="clock-time">
                     {time === "sunrise" ? "06:23" : time === "day" ? "12:40" : time === "dusk" ? "18:47" : "22:13"}
                   </span>
                 </div>
-                <div className="cat" />
+                <div className="cat">
+                  <span className="cat-face" />
+                  <span className="cat-tail" />
+                </div>
                 <div className="absolute right-5 top-5 max-w-[118px] text-right text-[10px] font-bold uppercase leading-[1.35]">
                   A better
                   <br />
