@@ -1202,3 +1202,44 @@ button, a { -webkit-tap-highlight-color: transparent; }
     transform: none !important;
   }
 }
+
+
+/* Slow editor writing: each line appears like a developer is typing it. */
+.monitor-code .code-line {
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity .22s steps(2), transform .22s steps(2);
+}
+
+.monitor-code .code-line.code-line-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.monitor-code .code-writing-cursor {
+  display: block;
+  position: absolute;
+  left: 29px;
+  bottom: 22%;
+  width: 6px;
+  height: 9px;
+  background: #a8dec4;
+  animation: editorCursorBlink .8s steps(1) infinite;
+}
+
+@keyframes editorCursorBlink {
+  0%, 48% { opacity: 1; }
+  49%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .monitor-code .code-line {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .monitor-code .code-writing-cursor {
+    animation: none;
+  }
+}
