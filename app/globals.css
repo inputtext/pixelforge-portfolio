@@ -811,3 +811,54 @@ button, a { -webkit-tap-highlight-color: transparent; }
     will-change: auto !important;
   }
 }
+
+
+/* Cursor light: a soft pixel-era focus follows the pointer without replacing the scene art. */
+.pixel-scene {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+}
+
+.pixel-scene::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 29;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(
+      circle 118px at var(--pointer-x) var(--pointer-y),
+      rgba(255, 244, 210, .13) 0 10%,
+      rgba(255, 244, 210, .055) 26%,
+      transparent 62%
+    );
+  mix-blend-mode: screen;
+  transition: opacity .28s ease;
+}
+
+.pixel-scene[data-hovering="true"]::after {
+  opacity: 1;
+}
+
+.pixel-scene[data-time="night"][data-hovering="true"]::after {
+  background:
+    radial-gradient(
+      circle 126px at var(--pointer-x) var(--pointer-y),
+      rgba(168, 222, 196, .12) 0 9%,
+      rgba(96, 82, 237, .06) 25%,
+      transparent 64%
+    );
+}
+
+@media (max-width: 767px), (hover: none) {
+  .pixel-scene::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pixel-scene::after {
+    display: none;
+  }
+}
