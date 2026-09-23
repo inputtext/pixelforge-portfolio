@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 const projects = [
@@ -76,9 +77,9 @@ export default function SelectedWork() {
 
         <div className="grid gap-6 md:grid-cols-3">
           {projects.map((project) => (
-            <a
+            <Link
               key={project.no}
-              href="#contact"
+              href={`/work/${project.title === "DevCollective" ? "devcollective" : project.title === "Zero-Trust Vault" ? "zero-trust-vault" : "cflow"}`}
               className="group pixel-border bg-paper p-3 transition-transform hover:-translate-y-1"
             >
               <div className="flex min-h-[72px] items-start justify-between border-b-2 border-foreground pb-4">
@@ -102,7 +103,7 @@ export default function SelectedWork() {
                 <span>{project.stack}</span>
                 <span className="text-blue">Open ↗</span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
