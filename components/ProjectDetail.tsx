@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -11,13 +11,13 @@ type Project = {
   type: string;
   intro: string;
   color: string;
-  stack: string[];
+  stack: readonly string[];
   status: string;
   problem: string;
   build: string;
-  features: string[];
-  architecture: string[];
-  challenges: string[];
+  features: readonly string[];
+  architecture: readonly string[];
+  challenges: readonly string[];
   learned: string;
   github: string;
   live?: string;
@@ -87,8 +87,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                 <p className="mt-5 max-w-2xl text-sm leading-6 text-muted">{project.intro}</p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <a href={project.github} target="_blank" rel="noreferrer" className="pixel-button inline-flex items-center gap-2 bg-foreground px-5 py-3 text-[10px] font-bold uppercase text-white">
-                    <Github size={13} />
-                    GitHub
+                    GitHub ↗
                   </a>
                   {project.live && (
                     <a href={project.live} target="_blank" rel="noreferrer" className="pixel-button inline-flex items-center gap-2 bg-green px-5 py-3 text-[10px] font-bold uppercase">
