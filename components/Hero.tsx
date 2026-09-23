@@ -1,7 +1,7 @@
 "use client";
 
 import { MapPin, Play } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type TimeOfDay = "sunrise" | "day" | "dusk" | "night";
 
@@ -14,11 +14,75 @@ const timeModes: { id: TimeOfDay; label: string; glyph: string }[] = [
 
 export default function Hero() {
   const [time, setTime] = useState<TimeOfDay>("dusk");
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const frameRef = useRef<number | null>(null);
+  const targetRef = useRef({ x: 0, y: 0 });
+  const currentRef = useRef({ x: 0, y: 0 });
 
   const cycleTime = () => {
     const index = timeModes.findIndex((mode) => mode.id === time);
     setTime(timeModes[(index + 1) % timeModes.length].id);
   };
+
+  useEffect(() => {
+    const scene = sceneRef.current;
+    if (!scene) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reduceMotion.matches) return;
+
+    const render = () => {
+      const current = currentRef.current;
+      const target = targetRef.current;
+
+      current.x += (target.x - current.x) * 0.075;
+      current.y += (target.y - current.y) * 0.075;
+
+      scene.style.setProperty("--parallax-x", current.x.toFixed(3));
+      scene.style.setProperty("--parallax-y", current.y.toFixed(3));
+
+      if (Math.abs(target.x - current.x) > 0.01 || Math.abs(target.y - current.y) > 0.01) {
+        frameRef.current = window.requestAnimationFrame(render);
+      } else {
+        frameRef.current = null;
+      }
+    };
+
+    const schedule = () => {
+      if (frameRef.current === null) {
+        frameRef.current = window.requestAnimationFrame(render);
+      }
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const rect = scene.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+      targetRef.current.x = x;
+      targetRef.current.y = y;
+      scene.dataset.hovering = "true";
+      schedule();
+    };
+
+    const handlePointerLeave = () => {
+      targetRef.current.x = 0;
+      targetRef.current.y = 0;
+      scene.dataset.hovering = "false";
+      schedule();
+    };
+
+    scene.addEventListener("pointermove", handlePointerMove);
+    scene.addEventListener("pointerleave", handlePointerLeave);
+
+    return () => {
+      scene.removeEventListener("pointermove", handlePointerMove);
+      scene.removeEventListener("pointerleave", handlePointerLeave);
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
+    };
+  }, []);
 
   return (
     <section id="top" className="px-5 pb-8 md:px-10">
@@ -84,7 +148,7 @@ export default function Hero() {
               onClick={cycleTime}
               className="pixel-scene-button"
             >
-              <div className="pixel-scene" data-time={time}>
+              <div ref={sceneRef} className="pixel-scene" data-time={time} data-hovering="false">
                 <div className="sky">
                   <span className="pixel-sun" />
                   <span className="pixel-stars" />
@@ -166,7 +230,7 @@ export default function Hero() {
                   <br />
                   take time.
                 </div>
-                <span className="scene-hint">CLICK SCENE TO CHANGE TIME</span>
+                <span className="scene-hint">MOVE YOUR CURSOR</span>
               </div>
             </button>
 
