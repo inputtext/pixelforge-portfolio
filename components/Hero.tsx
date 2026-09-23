@@ -37,11 +37,6 @@ export default function Hero() {
   const pointerTargetRef = useRef({ x: 50, y: 50 });
   const pointerCurrentRef = useRef({ x: 50, y: 50 });
 
-  const cycleTime = () => {
-    const index = timeModes.findIndex((mode) => mode.id === time);
-    setTime(timeModes[(index + 1) % timeModes.length].id);
-  };
-
   const handleRoomAction = (item: string) => {
     switch (item) {
       case "window":
