@@ -18,6 +18,8 @@ export default function Hero() {
   const frameRef = useRef<number | null>(null);
   const targetRef = useRef({ x: 0, y: 0 });
   const currentRef = useRef({ x: 0, y: 0 });
+  const pointerTargetRef = useRef({ x: 50, y: 50 });
+  const pointerCurrentRef = useRef({ x: 50, y: 50 });
 
   const cycleTime = () => {
     const index = timeModes.findIndex((mode) => mode.id === time);
@@ -38,8 +40,15 @@ export default function Hero() {
       current.x += (target.x - current.x) * 0.075;
       current.y += (target.y - current.y) * 0.075;
 
+      const pointerCurrent = pointerCurrentRef.current;
+      const pointerTarget = pointerTargetRef.current;
+      pointerCurrent.x += (pointerTarget.x - pointerCurrent.x) * 0.12;
+      pointerCurrent.y += (pointerTarget.y - pointerCurrent.y) * 0.12;
+
       scene.style.setProperty("--parallax-x", current.x.toFixed(3));
       scene.style.setProperty("--parallax-y", current.y.toFixed(3));
+      scene.style.setProperty("--pointer-x", pointerCurrent.x.toFixed(2) + "%");
+      scene.style.setProperty("--pointer-y", pointerCurrent.y.toFixed(2) + "%");
 
       if (Math.abs(target.x - current.x) > 0.01 || Math.abs(target.y - current.y) > 0.01) {
         frameRef.current = window.requestAnimationFrame(render);
@@ -58,9 +67,13 @@ export default function Hero() {
       const rect = scene.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width - 0.5;
       const y = (event.clientY - rect.top) / rect.height - 0.5;
+      const pointerX = Math.max(0, Math.min(100, ((event.clientX - rect.left) / rect.width) * 100));
+      const pointerY = Math.max(0, Math.min(100, ((event.clientY - rect.top) / rect.height) * 100));
 
       targetRef.current.x = x;
       targetRef.current.y = y;
+      pointerTargetRef.current.x = pointerX;
+      pointerTargetRef.current.y = pointerY;
       scene.dataset.hovering = "true";
       schedule();
     };
@@ -68,6 +81,8 @@ export default function Hero() {
     const handlePointerLeave = () => {
       targetRef.current.x = 0;
       targetRef.current.y = 0;
+      pointerTargetRef.current.x = 50;
+      pointerTargetRef.current.y = 50;
       scene.dataset.hovering = "false";
       schedule();
     };
